@@ -11,9 +11,17 @@ function shortLinkFunct() {
         let url = `https://api.shrtco.de/v2/shrten?url=${longLink.value}`;
         fetch(url)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => short.innerHTML = data.result.shortLink);
+
+        //afficher le resultat
+        short.style.display="black";
+
+        if (short.innerHTML.length == 0) {
+            short.innerHTML = "lien non valide !";           
+        }
     } else {
         //error
-        error.innerHTML = "Veillez remplir le champ !"
+        error.innerHTML = "Veillez remplir le champ !";
+        short.style.display = "none";
     }
 }
